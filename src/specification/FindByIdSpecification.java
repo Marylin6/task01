@@ -2,7 +2,11 @@ package specification;
 
 import entity.DoubleArrayEntity;
 
+import java.util.logging.Logger;
+
 public class FindByIdSpecification implements Specification {
+
+    private static final Logger logger = Logger.getLogger(FindByIdSpecification.class.getName());
 
     private int id;
 
@@ -12,6 +16,12 @@ public class FindByIdSpecification implements Specification {
 
     @Override
     public boolean specify(DoubleArrayEntity entity) {
-        return entity.getId() == id;
+        boolean result = entity.getId() == id;
+
+        if (result) {
+            logger.info("Entity matched by id=" + id);
+        }
+
+        return result;
     }
 }
