@@ -2,79 +2,8 @@ package service;
 
 import entity.DoubleArrayEntity;
 
-import java.util.Optional;
+public class ArraySort {
 
-public class ArrayServiceImpl implements ArrayService {
-
-    @Override
-    public Optional<Double> findMin(DoubleArrayEntity entity) {
-        double[] arr = entity.getArray();
-
-        if (arr.length == 0) {
-            return Optional.empty();
-        }
-
-        double min = arr[0];
-        for (double num : arr) {
-            if (num < min) {
-                min = num;
-            }
-        }
-
-        return Optional.of(min);
-    }
-
-    @Override
-    public Optional<Double> findMax(DoubleArrayEntity entity) {
-        double[] arr = entity.getArray();
-
-        if (arr.length == 0) {
-            return Optional.empty();
-        }
-
-        double max = arr[0];
-        for (double num : arr) {
-            if (num > max) {
-                max = num;
-            }
-        }
-
-        return Optional.of(max);
-    }
-
-    @Override
-    public Optional<Double> sum(DoubleArrayEntity entity) {
-        double[] arr = entity.getArray();
-
-        if (arr.length == 0) {
-            return Optional.empty();
-        }
-
-        double sum = 0;
-        for (double num : arr) {
-            sum += num;
-        }
-
-        return Optional.of(sum);
-    }
-
-    @Override
-    public Optional<Double> average(DoubleArrayEntity entity) {
-        double[] arr = entity.getArray();
-
-        if (arr.length == 0) {
-            return Optional.empty();
-        }
-
-        double sum = 0;
-        for (double num : arr) {
-            sum += num;
-        }
-
-        return Optional.of((double) sum / arr.length);
-    }
-
-    @Override
     public void insertionSort(DoubleArrayEntity entity) {
         double[] arr = entity.getArray();
 
@@ -91,7 +20,6 @@ public class ArrayServiceImpl implements ArrayService {
         }
     }
 
-    @Override
     public void mergeSort(DoubleArrayEntity entity) {
         double[] arr = entity.getArray();
         mergeSortRecursive(arr, 0, arr.length - 1);
