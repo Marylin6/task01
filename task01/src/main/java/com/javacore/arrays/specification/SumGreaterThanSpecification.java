@@ -3,12 +3,12 @@ package main.java.com.javacore.arrays.specification;
 import main.java.com.javacore.arrays.entity.ArrayParameters;
 import main.java.com.javacore.arrays.entity.DoubleArrayEntity;
 import main.java.com.javacore.arrays.warehouse.Warehouse;
-
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SumGreaterThanSpecification implements Specification {
 
-    private static final Logger logger = Logger.getLogger(SumGreaterThanSpecification.class.getName());
+    private static final Logger logger = LogManager.getLogger();
 
     private double threshold;
     private Warehouse warehouse;
@@ -23,14 +23,14 @@ public class SumGreaterThanSpecification implements Specification {
         ArrayParameters params = warehouse.get(entity.getId());
 
         if (params == null) {
-            logger.warning("No parameters for entity id=" + entity.getId());
+            logger.warn("No parameters for entity id={}", entity.getId());
             return false;
         }
 
         boolean result = params.getSum() > threshold;
 
         if (result) {
-            logger.info("Entity id=" + entity.getId() + " passed sum > " + threshold);
+            logger.info("Entity id={} passed sum > {}", entity.getId(), threshold);
         }
 
         return result;

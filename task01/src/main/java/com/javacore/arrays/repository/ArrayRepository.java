@@ -2,17 +2,17 @@ package main.java.com.javacore.arrays.repository;
 
 import main.java.com.javacore.arrays.entity.DoubleArrayEntity;
 import main.java.com.javacore.arrays.specification.Specification;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class ArrayRepository {
 
-    private static final Logger logger = Logger.getLogger(ArrayRepository.class.getName());
+    private static final Logger logger = LogManager.getLogger();
 
     private static ArrayRepository instance;
-
     private List<DoubleArrayEntity> storage = new ArrayList<>();
 
     private ArrayRepository() {}
@@ -27,16 +27,16 @@ public class ArrayRepository {
 
     public void add(DoubleArrayEntity entity) {
         storage.add(entity);
-        logger.info("Added entity id=" + entity.getId());
+        logger.info("Added entity id={}", entity.getId());
     }
 
     public void remove(DoubleArrayEntity entity) {
         storage.remove(entity);
-        logger.info("Removed entity id=" + entity.getId());
+        logger.info("Removed entity id={}", entity.getId());
     }
 
     public List<DoubleArrayEntity> getAll() {
-        logger.info("Retrieving all entities, count=" + storage.size());
+        logger.info("Retrieving all entities, count={}", storage.size());
         return new ArrayList<>(storage);
     }
 
@@ -49,7 +49,7 @@ public class ArrayRepository {
             }
         }
 
-        logger.info("Query executed, found " + result.size() + " entities");
+        logger.info("Query executed, found {} entities", result.size());
         return result;
     }
 }

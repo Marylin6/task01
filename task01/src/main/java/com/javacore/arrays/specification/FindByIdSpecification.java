@@ -1,13 +1,12 @@
 package main.java.com.javacore.arrays.specification;
 
 import main.java.com.javacore.arrays.entity.DoubleArrayEntity;
-
-import java.util.logging.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class FindByIdSpecification implements Specification {
 
-    private static final Logger logger = Logger.getLogger(FindByIdSpecification.class.getName());
-
+    private static final Logger logger = LogManager.getLogger();
     private int id;
 
     public FindByIdSpecification(int id) {
@@ -19,7 +18,7 @@ public class FindByIdSpecification implements Specification {
         boolean result = entity.getId() == id;
 
         if (result) {
-            logger.info("Entity matched by id=" + id);
+            logger.info("Entity matched by id={}", id);
         }
 
         return result;
