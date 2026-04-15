@@ -5,8 +5,11 @@ import observer.Observer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DoubleArrayEntity implements Observable {
+
+    private static final Logger logger = Logger.getLogger(DoubleArrayEntity.class.getName());
 
     private int id;
     private double[] array;
@@ -16,6 +19,7 @@ public class DoubleArrayEntity implements Observable {
     public DoubleArrayEntity(int id, double[] array) {
         this.id = id;
         this.array = array;
+        logger.info("Entity created with id=" + id);
     }
 
     public int getId() {
@@ -35,6 +39,7 @@ public class DoubleArrayEntity implements Observable {
     }
 
     public void setElement(int index, double value) {
+        logger.info("Updating element at index=" + index + " to value=" + value + " for id=" + id);
         array[index] = value;
         notifyObservers();
     }
@@ -42,10 +47,12 @@ public class DoubleArrayEntity implements Observable {
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
+        logger.info("Observer added to entity id=" + id);
     }
 
     @Override
     public void notifyObservers() {
+        logger.info("Notifying observers for entity id=" + id);
         for (Observer observer : observers) {
             observer.update(this);
         }
