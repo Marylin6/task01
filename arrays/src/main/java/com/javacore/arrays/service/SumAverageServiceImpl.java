@@ -4,42 +4,7 @@ import com.javacore.arrays.entity.DoubleArrayEntity;
 
 import java.util.Optional;
 
-public class ArrayMaths {
-
-    public Optional<Double> findMin(DoubleArrayEntity entity) {
-        double[] arr = entity.getArray();
-
-        if (arr.length == 0) {
-            return Optional.empty();
-        }
-
-        double min = arr[0];
-        for (double num : arr) {
-            if (num < min) {
-                min = num;
-            }
-        }
-
-        return Optional.of(min);
-    }
-
-    public Optional<Double> findMax(DoubleArrayEntity entity) {
-        double[] arr = entity.getArray();
-
-        if (arr.length == 0) {
-            return Optional.empty();
-        }
-
-        double max = arr[0];
-        for (double num : arr) {
-            if (num > max) {
-                max = num;
-            }
-        }
-
-        return Optional.of(max);
-    }
-
+public class SumAverageServiceImpl {
     public Optional<Double> sum(DoubleArrayEntity entity) {
         double[] arr = entity.getArray();
 

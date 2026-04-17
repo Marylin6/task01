@@ -2,25 +2,24 @@ package com.javacore.arrays.entity;
 
 import com.javacore.arrays.observer.Observer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class DoubleArrayEntity implements Observable {
+public class DoubleArrayEntity {
 
     private static final Logger logger = LogManager.getLogger();
 
     private int id;
     private double[] array;
 
-    private List<Observer> observers = new ArrayList<>();
+    private Observer observer;
 
-    public DoubleArrayEntity(int id, double[] array) {
+    public DoubleArrayEntity(int id, double[] array, Observer observer) {
         this.id = id;
         this.array = array;
+        this.observer = observer;
         logger.info("Entity created with id={}", id);
     }
 
@@ -43,19 +42,12 @@ public class DoubleArrayEntity implements Observable {
     public void setElement(int index, double value) {
         logger.info("Updating element at index={} to value={} for id={}", index, value, id);
         array[index] = value;
-        notifyObservers();
+        notifyObserver();
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-        logger.info("Observer added to entity id={}", id);
-    }
-
-    @Override
-    public void notifyObservers() {
-        logger.info("Notifying observers for entity id={}", id);
-        for (Observer observer : observers) {
+    public void notifyObserver() {
+        if (observer != null) {
+            logger.info("Notifying observer for entity id={}", id);
             observer.update(this);
         }
     }

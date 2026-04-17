@@ -2,7 +2,7 @@ package com.javacore.arrays.service;
 
 import com.javacore.arrays.entity.DoubleArrayEntity;
 
-public class ArraySort {
+public class SortServiceImpl {
 
     public void insertionSort(DoubleArrayEntity entity) {
         double[] arr = entity.getArray();
